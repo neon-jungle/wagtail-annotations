@@ -1,0 +1,2 @@
+recursive-include wagtailannotatedimage/static *
+recursive-include wagtailannotatedimage/templates *

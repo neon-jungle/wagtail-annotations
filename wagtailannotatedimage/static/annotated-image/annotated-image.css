@@ -1,0 +1,53 @@
+span.note {
+	display: block;
+	width: 20px;
+	height: 20px;
+	line-height: 1.5;
+	color: white;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	border-radius: 100%;
+	background-color: black;
+}
+
+.annotation-details {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.annotated-image--container {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+.annotated-image--forms {
+	width: calc(40% - 4px);
+}
+
+.annotated-image--forms > div {
+	background-color: #f4fcfc;
+	border: 1px solid #ccf1f1;
+	margin-bottom: 4px;
+	padding: 8px;
+}
+
+.annotated-image--forms h3 {
+	margin: 0;
+	display: inline-block;
+	font-weight: bold;
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+
+.annotated-image--forms button {
+	float: right;
+}
+
+li[data-annotations-field],
+div[data-annotation-form] {
+	opacity: 0;
+	position: absolute;
+}

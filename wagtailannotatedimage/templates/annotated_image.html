@@ -1,0 +1,26 @@
+<h2>{{ heading }}</h2>
+<fieldset>
+<ul id='{{ image_field_id }}-annotation-container' class="fields">
+	{% for child in panel.children %}
+		{{ child.bound_field.errors }}
+	{% endfor %}
+	<li class="{{ ' '.join(image_field.classes()) }}">
+		{{ image_field.render_as_field()  }}
+
+		<div class='annotation-details'>
+			<div data-image-container class='annotated-image--container'>
+				{{ image(image_field.get_chosen_item(), 'original') }}
+			</div>
+			<div data-annotation-forms class='annotated-image--forms'>
+
+			</div>
+		</div>
+		<div data-annotation-form>
+			{{ annotation_form }}
+		</div>
+	</li>
+	<li data-annotations-field class="{{ ' '.join(annotations_field.classes()) }}">
+		{{ annotations_field.render_as_field()  }}
+	</li>
+</ul>
+</fieldset>
