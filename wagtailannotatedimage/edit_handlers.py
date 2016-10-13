@@ -7,7 +7,7 @@ from wagtail.wagtailadmin.edit_handlers import (BaseCompositeEditHandler,
                                                 widget_with_script)
 from wagtail.wagtailimages.widgets import AdminImageChooser
 
-from .forms import AnnotationForm
+from .forms import BaseAnnotationForm
 
 
 class HiddenJsonInput(forms.HiddenInput):
@@ -19,7 +19,6 @@ class HiddenJsonInput(forms.HiddenInput):
         return super().render(name, value, attrs)
 
 
-#  https://github.com/torchbox/wagtail/blob/master/wagtail/wagtailadmin/edit_handlers.py#L206
 class BaseAnnotatedImagePanel(BaseCompositeEditHandler):
     template = 'templates/annotated_image.html'
     js_template = 'templates/annotated_image.js'
@@ -36,7 +35,6 @@ class BaseAnnotatedImagePanel(BaseCompositeEditHandler):
         self.image_field = self.children[0]
         self.image_field_id = self.image_field.bound_field.auto_id
         self.annotations_field = self.children[1]
-        self.annotation_form = AnnotationForm().as_p()
 
     def render(self):
         html = mark_safe(render_to_string(self.template, {
@@ -44,7 +42,7 @@ class BaseAnnotatedImagePanel(BaseCompositeEditHandler):
             'image_field_id': self.image_field_id,  # Used as js container id
             'image_field': self.image_field,
             'annotations_field': self.annotations_field,
-            'annotation_form': self.annotation_form,
+            'annotation_form': self.annotation_form.as_p(),
             'heading': self.heading,
         }))
         js = self.render_js_init()
@@ -57,13 +55,16 @@ class BaseAnnotatedImagePanel(BaseCompositeEditHandler):
 
 
 class AnnotatedImagePanel(object):
-    def __init__(self, image_field, annotations_field, heading=''):
+    def __init__(self, image_field, annotations_field,
+                 annotation_form=BaseAnnotationForm(), heading=''):
         self.children = [image_field, annotations_field]
         self.heading = heading
+        self.annotation_form = annotation_form
 
     def bind_to_model(self, model):
         return type(str('_AnnotatedImagePanel'), (BaseAnnotatedImagePanel,), {
             'model': model,
             'children': [child.bind_to_model(model) for child in self.children],
             'heading': self.heading,
+            'annotation_form': self.annotation_form
         })
