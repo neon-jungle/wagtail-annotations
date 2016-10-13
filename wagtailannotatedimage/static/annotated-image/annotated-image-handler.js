@@ -31,7 +31,7 @@ class AnnotatedImageEditHandler {
 			this.imageContainer.annotatableImage(this.createAnnotation.bind(this));
 		}
 
-		if(this.annotationsField.val() != '{}') {
+		if(this.annotationsField.val() && this.annotationsField.val() != '{}') {
 			var annotations = JSON.parse(this.annotationsField.val());
 			this.annotationData = annotations;
 

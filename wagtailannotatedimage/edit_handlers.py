@@ -20,8 +20,8 @@ class HiddenJsonInput(forms.HiddenInput):
 
 
 class BaseAnnotatedImagePanel(BaseCompositeEditHandler):
-    template = 'templates/annotated_image.html'
-    js_template = 'templates/annotated_image.js'
+    template = 'annotated_image.html'
+    js_template = 'annotated_image.js'
 
     @classmethod
     def widget_overrides(cls):
