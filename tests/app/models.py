@@ -23,6 +23,7 @@ class TestPage(Page):
     content_panels = Page.content_panels + [
         AnnotatedImagePanel(
             ImageChooserPanel('image'),
-            FieldPanel('annotations'), heading='Annotated Image'
+            FieldPanel('annotations'),
+            annotation_form=AnnotationForm(), heading='Annotated Image'
         )
     ]

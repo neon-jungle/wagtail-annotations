@@ -23,7 +23,7 @@ span.note {
 	width: 100%;
 }
 .annotated-image--forms {
-	width: calc(40% - 4px);
+	width: 100%;
 }
 
 .annotated-image--forms > div {
