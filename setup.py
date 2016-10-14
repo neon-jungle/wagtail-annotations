@@ -20,6 +20,11 @@ setup(
     install_requires=[
         'wagtail>=1.5',
     ],
+    extras_require={
+        'testing': [
+            'selenium==3.0.0'
+        ]
+    },
     zip_safe=False,
     license='BSD License',
 
