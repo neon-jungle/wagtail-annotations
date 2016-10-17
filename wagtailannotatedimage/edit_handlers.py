@@ -16,7 +16,7 @@ class HiddenJsonInput(forms.HiddenInput):
             value = '{}'
         elif isinstance(value, dict):
             value = json.dumps(value)
-        return super().render(name, value, attrs)
+        return super(HiddenJsonInput, self).render(name, value, attrs)
 
 
 class BaseAnnotatedImagePanel(BaseCompositeEditHandler):
