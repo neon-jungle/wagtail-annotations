@@ -7,4 +7,6 @@ tests.sqlite3
 .tox
 build/
 screenshots/
-ghostdriver.log
+*driver.log
+node_modules/
+wagtailannotatedimage/static/annotated-image/annotated-image-handler.js

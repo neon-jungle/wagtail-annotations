@@ -1,0 +1,21 @@
+{
+  "name": "wagtail-annotated-image",
+  "version": "1.0.0",
+  "description": "Wagtail plugin for creating images with annotation metadata",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "tox",
+    "build": "babel wagtailannotatedimage/frontend/js -d wagtailannotatedimage/static/annotated-image"
+  },
+  "author": "",
+  "license": "ISC",
+  "babel": {
+    "presets": ["latest"]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-latest": "^6.16.0"
+  }
+}
