@@ -50,4 +50,4 @@ AnnotationsField stores the annotations data as a Map with id for the annotation
             )
         ]
 
-.. image:: https://giant.gfycat.com/ShowyDirtyGalapagoshawk.gif
+.. image:: https://giant.gfycat.com/SpeedyHospitableHornet.gif
