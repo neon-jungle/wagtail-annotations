@@ -1,18 +1,26 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 from wagtail.tests.utils import WagtailTestUtils
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailimages.tests.utils import get_test_image_file
+
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+screenshots = True
 
 
 class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
     @classmethod
     def setUpClass(cls):
         super(TestEditHandler, cls).setUpClass()
-        cls.driver = webdriver.Firefox()
+        caps = DesiredCapabilities.PHANTOMJS
+        # caps['loggingPrefs'] = { 'browser':'ALL' }
+        cls.driver = webdriver.PhantomJS(desired_capabilities=caps)
+
         cls.driver.set_window_size(1920, 1080)
         cls.driver.implicitly_wait(10)
 
@@ -23,7 +31,8 @@ class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
 
     # helpful for debugging (folder needs to exist)
     def ss(self, name):
-        self.driver.save_screenshot('tests/screenshots/%s.png' % name)
+        if screenshots:
+            self.driver.save_screenshot('tests/screenshots/%s.png' % name)
 
     def setUp(self):
         # Add an image to use
@@ -54,10 +63,17 @@ class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
             EC.invisibility_of_element_located((By.XPATH, '//*[@id="search"]//a'))
         )
         self.ss('chosen')
-        # MutationObserver js not working?
-        # print(annotation_container.get_attribute("outerHTML"))
+        for entry in self.driver.get_log('browser'):
+            print(entry)
         preview_image = WebDriverWait(self.driver, 30).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, '[data-image-container] > img'))
         )
         self.ss('preview')
-        print(preview_image.get_attribute('src'))
+        self.assertEqual('%s/media/images/test.original.png' % self.live_server_url, preview_image.get_attribute('src'))
+
+        annotation_action = ActionChains(self.driver)
+        annotation_action.move_to_element_with_offset(preview_image, 50, 50)
+        annotation_action.click()
+        annotation_action.perform()
+
+        self.ss('annotation')
