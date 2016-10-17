@@ -1,13 +1,13 @@
 Wagtail Annotated Image
 =======================
 
-Combine two fields to create an image with annotation data. Annotations are stored
-as relative x,y coordinates with custom form data.
+Allows users to combine a Wagtail image with custom annotation data. Annotations are entered on the backend by
+clicking points on an image, annotation data is then stored with relative x,y coordinates with custom form data.
 
 Requirements
 ------------
 
--  Wagtail > 1.5
+-  Wagtail >= 1.5
 
 
 Installing
@@ -49,3 +49,5 @@ AnnotationsField stores the annotations data as a Map with id for the annotation
                 annotation_form=AnnotationForm(), heading='Annotated Image'
             )
         ]
+
+.. image:: https://giant.gfycat.com/ShowyDirtyGalapagoshawk.gif
