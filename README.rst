@@ -4,6 +4,8 @@ Wagtail Annotated Image
 Allows users to combine a Wagtail image with custom annotation data. Annotations are entered on the backend by
 clicking points on an image, annotation data is then stored with relative x,y coordinates with custom form data.
 
+.. image:: https://giant.gfycat.com/SpeedyHospitableHornet.gif
+
 Requirements
 ------------
 
@@ -44,10 +46,7 @@ AnnotationsField stores the annotations data as a Map with id for the annotation
 
         content_panels = Page.content_panels + [
             AnnotatedImagePanel(
-                ImageChooserPanel('image'),
-                FieldPanel('annotations'),
+                'image', 'annotations',
                 annotation_form=AnnotationForm(), heading='Annotated Image'
             )
         ]
-
-.. image:: https://giant.gfycat.com/SpeedyHospitableHornet.gif

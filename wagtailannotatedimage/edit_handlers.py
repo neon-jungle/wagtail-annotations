@@ -4,7 +4,8 @@ from django import forms
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 from wagtail.wagtailadmin.edit_handlers import (BaseCompositeEditHandler,
-                                                widget_with_script)
+                                                FieldPanel, widget_with_script)
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.widgets import AdminImageChooser
 
 from .forms import BaseAnnotationForm
@@ -52,12 +53,11 @@ class BaseAnnotatedImagePanel(BaseCompositeEditHandler):
         return mark_safe(render_to_string(self.js_template, {
             'image_field_id': self.image_field_id,
         }))
-
-
 class AnnotatedImagePanel(object):
     def __init__(self, image_field, annotations_field,
                  annotation_form=BaseAnnotationForm(), heading=''):
-        self.children = [image_field, annotations_field]
+        self.children = [
+            ImageChooserPanel(image_field), FieldPanel(annotations_field)]
         self.heading = heading
         self.annotation_form = annotation_form
 

@@ -2,9 +2,7 @@ from __future__ import unicode_literals
 
 from django import forms
 from django.db import models
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailcore.models import Page
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 from wagtailannotatedimage.edit_handlers import AnnotatedImagePanel
 from wagtailannotatedimage.fields import AnnotationsField
@@ -22,8 +20,7 @@ class TestPage(Page):
 
     content_panels = Page.content_panels + [
         AnnotatedImagePanel(
-            ImageChooserPanel('image'),
-            FieldPanel('annotations'),
+            'image', 'annotations',
             annotation_form=AnnotationForm(), heading='Annotated Image'
         )
     ]
