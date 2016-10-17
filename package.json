@@ -12,10 +12,13 @@
   "author": "",
   "license": "ISC",
   "babel": {
-    "presets": ["latest"]
+    "presets": [
+      "latest"
+    ]
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
-    "babel-preset-latest": "^6.16.0"
+    "babel-preset-latest": "^6.16.0",
+    "phantomjs": "^2.1.7"
   }
 }
