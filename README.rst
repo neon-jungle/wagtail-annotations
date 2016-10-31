@@ -5,6 +5,7 @@ Allows users to combine a Wagtail image with custom annotation data. Annotations
 clicking points on an image, annotation data is then stored with relative x,y coordinates with custom form data.
 
 .. image:: https://giant.gfycat.com/SpeedyHospitableHornet.gif
+   :width: 728 px
 
 Requirements
 ------------
