@@ -53,6 +53,8 @@ class BaseAnnotatedImagePanel(BaseCompositeEditHandler):
         return mark_safe(render_to_string(self.js_template, {
             'image_field_id': self.image_field_id,
         }))
+
+
 class AnnotatedImagePanel(object):
     def __init__(self, image_field, annotations_field,
                  annotation_form=BaseAnnotationForm(), heading=''):

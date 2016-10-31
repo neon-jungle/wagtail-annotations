@@ -2,6 +2,7 @@ class AnnotatedImageEditHandler {
 	constructor(container, imageFieldId) {
 		this.container = container;
 		this.imageFieldId = imageFieldId;
+		this.formPrefix = 'annotation-'
 		this._index = 1;
 		this._annotationData = {};
 		this.annotationsField = $(container).find('[data-annotations-field] input');
@@ -107,7 +108,7 @@ class AnnotatedImageEditHandler {
 	createAnnotationForm(index, initialData) {
 		var annotationForm = this.container.find('[data-annotation-form]').clone(false);
 		annotationForm.removeAttr('data-annotation-form');
-		annotationForm.find('#id_annotation_number').val(index);
+		annotationForm.find('[name="' + this.formPrefix + 'annotation_number"]').val(index);
 		annotationForm.prepend('<button href="#" class="button icon text-replace hover-no icon-bin" data-delete="' + index + '"></button>')
 		annotationForm.prepend('<h3>' + index + '</h3>');
 		annotationForm.find('button').click(this.deleteAnnotationHandler.bind(this));
@@ -115,17 +116,14 @@ class AnnotatedImageEditHandler {
 			var fields = initialData.fields;
 			for(name in fields) {
 				//input
-				var input = annotationForm.find('input[name="' + name +'"]');
+				var input = annotationForm.find('[name="' + this.formPrefix + name +'"]');
 				if(input.length > 0){
 					input.val(fields[name])
-				}
-				else {
-					var select = annotationForm.find('select').val(fields[name]);
 				}
 			}
 		}
 
-		annotationForm.find('input, select').change(this.annotationFieldHandler.bind(this));
+		annotationForm.find('input, textarea, select').change(this.annotationFieldHandler.bind(this));
 		this.container.find('[data-annotation-forms]').append(annotationForm);
 	}
 
@@ -157,9 +155,10 @@ class AnnotatedImageEditHandler {
 	annotationFieldHandler(event) {
 		var target = event.target;
 		var parent = target.parentNode.parentNode;
-		var id = parent.querySelector('#id_annotation_number').value
+		var id = parent.querySelector('[name="' + this.formPrefix + 'annotation_number"]').value
 		var annotations = this.annotationData;
-		annotations[id]['fields'][target.name] = target.value;
+		var fieldName = target.name.substring(this.formPrefix.length);
+		annotations[id]['fields'][fieldName] = target.value;
 		this.annotationData = annotations;
 	}
 }
