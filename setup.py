@@ -19,6 +19,7 @@ setup(
 
     install_requires=[
         'wagtail>=1.5',
+        'Django>=1.9',
     ],
     extras_require={
         'testing': [

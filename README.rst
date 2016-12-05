@@ -11,6 +11,7 @@ Requirements
 ------------
 
 -  Wagtail >= 1.5
+- Django >= 1.8
 
 
 Installing
