@@ -1,10 +1,6 @@
 import json
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from wagtail.tests.utils import WagtailTestUtils
-from wagtail.wagtailimages.models import Image
-from wagtail.wagtailimages.tests.utils import get_test_image_file
-
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
@@ -12,6 +8,9 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from tests.app.models import TestPage
+from wagtail.tests.utils import WagtailTestUtils
+from wagtail.wagtailimages.models import Image
+from wagtail.wagtailimages.tests.utils import get_test_image_file
 
 screenshots = True
 
@@ -93,8 +92,8 @@ class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
         self.assertEqual(annotation_marker.text, '1')
         annotation_form = annotation_container.find_element_by_css_selector('[data-annotation-forms] > div')
         self.assertEqual(annotation_form.find_element_by_tag_name('h3').text, '1')
-        self.assertEqual(annotation_form.find_element_by_id('id_annotation_number').get_attribute('value'), '1')
-        annotation_form.find_element_by_id('id_text').send_keys('Unwanted textual advances')
+        self.assertEqual(annotation_form.find_element_by_xpath('//input[@name="annotation-annotation_number"]').get_attribute('value'), '1')
+        annotation_form.find_element_by_xpath('//input[@name="annotation-text"]').send_keys('Unwanted textual advances')
         annotation_form.click()  # Lose focus
 
         annotation_data_field = self.driver.find_element_by_id('id_annotations')
