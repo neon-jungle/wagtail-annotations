@@ -138,7 +138,7 @@ class AnnotatedImageEditHandler {
 				fields: {}
 			}
 			this.annotationData = annotations;
-		}.bind(this), 100);
+		}.bind(this), 10);
 	}
 
 	deleteAnnotationHandler(event) {

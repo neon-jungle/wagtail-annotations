@@ -7,12 +7,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from tests.app.models import TestPage
 from wagtail.tests.utils import WagtailTestUtils
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailimages.tests.utils import get_test_image_file
 
-screenshots = True
+from tests.app.models import TestPage
+
+screenshots = False
 
 
 class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
@@ -96,6 +97,9 @@ class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
         annotation_form.find_element_by_xpath('//input[@name="annotation-text"]').send_keys('Unwanted textual advances')
         annotation_form.click()  # Lose focus
 
+        WebDriverWait(self.driver, 5).until(
+            EC.text_to_be_present_in_element_value((By.ID, 'id_annotations'), 'Unwanted textual advances')
+        )
         annotation_data_field = self.driver.find_element_by_id('id_annotations')
         annotation_json = json.loads(annotation_data_field.get_attribute('value'))
         self.assertEqual(annotation_json['1']['fields']['text'], 'Unwanted textual advances')
