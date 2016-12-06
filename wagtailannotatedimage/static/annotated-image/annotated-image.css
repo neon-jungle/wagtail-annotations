@@ -19,10 +19,10 @@ span.note {
 
 .annotated-image--container {
 	position: relative;
-    display: inline-block;
+	display: inline-block;
 }
 .annotated-image--container > img {
-    display: block;
+	display: block;
 }
 
 .annotated-image--forms {
