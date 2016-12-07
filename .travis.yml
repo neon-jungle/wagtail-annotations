@@ -15,12 +15,12 @@ env:
     - DJANGO_SETTINGS_MODULE="tests.app.settings"
     - TOX_ENV=
   matrix:
-    - DJANGO='18' WAGTAIL='15'
     - DJANGO='19' WAGTAIL='15'
     - DJANGO='110' WAGTAIL='15'
-    - DJANGO='18' WAGTAIL='16'
     - DJANGO='19' WAGTAIL='16'
     - DJANGO='110' WAGTAIL='16'
+    - DJANGO='19' WAGTAIL='17'
+    - DJANGO='110' WAGTAIL='17'
 
 install:
   - pip install --upgrade pip wheel tox

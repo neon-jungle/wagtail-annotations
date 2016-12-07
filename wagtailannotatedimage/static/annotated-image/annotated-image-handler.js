@@ -133,7 +133,7 @@ var AnnotatedImageEditHandler = function () {
 					fields: {}
 				};
 				this.annotationData = annotations;
-			}.bind(this), 100);
+			}.bind(this), 10);
 		}
 	}, {
 		key: 'deleteAnnotationHandler',
