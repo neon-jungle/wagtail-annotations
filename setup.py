@@ -10,7 +10,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='wagtailannotatedimage',
-    version='0.0.4',
+    version='0.0.5',
     description="A wagtail module for creating an image field with annotation metadata",
     long_description=readme,
     author='Takeflight',
