@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from wagtail.wagtailimages.models import Filter, get_iamge_model
+from wagtail.wagtailimages.models import Filter, get_image_model
 
-Image = get_iamge_model()
+Image = get_image_model()
 
 
 def get_full_image_url(request, image_id):
