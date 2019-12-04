@@ -13,13 +13,13 @@ setup(
     version='0.0.5',
     description="A wagtail module for creating an image field with annotation metadata",
     long_description=readme,
-    author='Takeflight',
-    author_email='developers@takeflight.com.au',
-    url='https://github.com/takeflight/wagtailannotatedimage',
+    author='Neon Jungle',
+    author_email='developers@neonjungle.studio',
+    url='https://github.com/neon-jungle/wagtailannotatedimage',
 
     install_requires=[
-        'wagtail>=1.5',
-        'Django>=1.9',
+        'wagtail>=2.7',
+        'Django>=2.0',
     ],
     extras_require={
         'testing': [

@@ -3,10 +3,10 @@ import json
 from django import forms
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
-from wagtail.wagtailadmin.edit_handlers import (BaseCompositeEditHandler,
-                                                FieldPanel, widget_with_script)
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailimages.widgets import AdminImageChooser
+from wagtail.admin.edit_handlers import (BaseCompositeEditHandler, FieldPanel,
+                                         widget_with_script)
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.widgets import AdminImageChooser
 
 from .forms import BaseAnnotationForm
 
