@@ -1,16 +1,16 @@
 import json
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from wagtail.images.models import Image
+from wagtail.images.tests.utils import get_test_image_file
+from wagtail.tests.utils import WagtailTestUtils
+
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from wagtail.tests.utils import WagtailTestUtils
-from wagtail.wagtailimages.models import Image
-from wagtail.wagtailimages.tests.utils import get_test_image_file
-
 from tests.app.models import TestPage
 
 screenshots = False

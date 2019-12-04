@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django import forms
 from django.db import models
-from wagtail.wagtailcore.models import Page
+from wagtail.core.models import Page
 
 from wagtailannotatedimage.edit_handlers import AnnotatedImagePanel
 from wagtailannotatedimage.fields import AnnotationsField

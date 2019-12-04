@@ -9,12 +9,12 @@ INSTALLED_APPS = [
     'taggit',
     'modelcluster',
 
-    'wagtail.wagtailcore',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtailusers',
-    'wagtail.wagtailsites',
-    'wagtail.wagtailsnippets',
-    'wagtail.wagtailimages',
+    'wagtail.core',
+    'wagtail.admin',
+    'wagtail.users',
+    'wagtail.sites',
+    'wagtail.snippets',
+    'wagtail.images',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,7 +49,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.core.middleware.SiteMiddleware',
 ]
 
 TEMPLATES = [
