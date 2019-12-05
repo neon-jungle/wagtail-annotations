@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from tests.app.models import TestPage
 
-screenshots = True
+screenshots = False
 
 
 class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
