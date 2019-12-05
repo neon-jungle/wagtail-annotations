@@ -21,7 +21,6 @@ class HiddenJsonInput(forms.HiddenInput):
 
 class AnnotatedImagePanel(MultiFieldPanel):
     template = 'annotated_image.html'
-    # template = 'wagtailadmin/edit_handlers/multi_field_panel.html'
     js_template = 'annotated_image.js'
     
     def __init__(self, image_field, annotations_field,
@@ -63,25 +62,6 @@ class AnnotatedImagePanel(MultiFieldPanel):
         return widget_with_script(html, js)
 
     def render_js_init(self):
-        print('myes')
         return mark_safe(render_to_string(self.js_template, {
             'image_field_id': self.image_field_id,
         }))
-
-
-class AnnotatedImagePanel2(object):
-    def __init__(self, image_field, annotations_field,
-                 annotation_form=BaseAnnotationForm(), heading=''):
-        self.children = [
-            ImageChooserPanel(image_field), FieldPanel(annotations_field)]
-        self.heading = heading
-        self.annotation_form = annotation_form
-
-    def bind_to(self, model=None, instance=None, request=None, form=None):
-        super().bind_to()
-        return type(str('_AnnotatedImagePanel'), (BaseAnnotatedImagePanel,), {
-            'model': model,
-            'children': [child.bind_to(model) for child in self.children],
-            'heading': self.heading,
-            'annotation_form': self.annotation_form
-        })
