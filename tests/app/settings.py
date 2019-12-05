@@ -18,8 +18,8 @@ INSTALLED_APPS = [
     'wagtail.images',
 
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'django.contrib.messages',
