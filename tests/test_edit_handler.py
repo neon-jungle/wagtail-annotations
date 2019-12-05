@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from tests.app.models import TestPage
 
-screenshots = False
+screenshots = True
 
 
 class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
@@ -55,12 +55,15 @@ class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
 
     def save_page(self, title):
         self.driver.find_element_by_id('id_title').send_keys(title)
+        self.driver.find_element_by_xpath('//a[@href="#tab-promote"]').click()
+        self.driver.find_element_by_id('id_slug').send_keys('cool-slug')
         actions = self.driver.find_element_by_css_selector('li.actions ')
         actions.find_element_by_css_selector('div.dropdown-toggle').click()
         actions.find_element_by_xpath('//button[@value="action-publish"]').click()
         message = WebDriverWait(self.driver, 30).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, '.messages > ul > li'))
         )
+        self.ss('page_save')
         self.assertTrue('success' in message.get_attribute('class'))
 
     def test_create_annotation(self):
@@ -106,7 +109,6 @@ class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
         self.ss('annotation_text')
         title = 'one annotation'
         self.save_page(title)
-        self.ss('page_save')
 
         page = TestPage.objects.get(title=title)
         self.assertEqual(page.image, self.test_image)
