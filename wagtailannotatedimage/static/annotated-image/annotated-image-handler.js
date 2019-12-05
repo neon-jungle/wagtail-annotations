@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -10,22 +10,22 @@ var AnnotatedImageEditHandler = function () {
 
 		this.container = container;
 		this.imageFieldId = imageFieldId;
-		this.formPrefix = 'annotation-';
+		this.formPrefix = "annotation-";
 		this._index = 1;
 		this._annotationData = {};
-		this.annotationsField = $(container).find('[data-annotations-field] input');
-		this.imageContainer = $(container).find('[data-image-container]');
+		this.annotationsField = $(container).find("[data-annotations-field] input");
+		this.imageContainer = $(container).find("[data-image-container]");
 	}
 
 	_createClass(AnnotatedImageEditHandler, [{
-		key: 'setUp',
+		key: "setUp",
 		value: function setUp() {
-			var img = this.imageContainer.find('img');
+			var img = this.imageContainer.find("img");
 			if (img.length > 0) {
 				this.imageContainer.annotatableImage(this.createAnnotation.bind(this));
 			}
 
-			if (this.annotationsField.val() && this.annotationsField.val() != '{}') {
+			if (this.annotationsField.val() && this.annotationsField.val() != "{}") {
 				var annotations = JSON.parse(this.annotationsField.val());
 				this.annotationData = annotations;
 
@@ -33,7 +33,7 @@ var AnnotatedImageEditHandler = function () {
 				var index = 0;
 				for (var key in annotations) {
 					var annotationObj = annotations[key];
-					annotationObj['id'] = key;
+					annotationObj["id"] = key;
 					if (key >= index) {
 						index = parseInt(key) + 1;
 					}
@@ -41,12 +41,13 @@ var AnnotatedImageEditHandler = function () {
 					this.createAnnotationForm(key, annotations[key]);
 				}
 				this.index = index;
-				this.imageContainer.find('img').load(function () {
+				this.imageContainer.find("img").on("load", function () {
 					this.imageContainer.addAnnotations(function (annotation) {
-						var annotationElement = $(document.createElement('span'));
-						annotationElement.addClass('note');
+						debugger;
+						var annotationElement = $(document.createElement("span"));
+						annotationElement.addClass("note");
 						annotationElement.html(annotation.id);
-						annotationElement.attr('data-annotation-id', annotation.id);
+						annotationElement.attr("data-annotation-id", annotation.id);
 						return annotationElement;
 					}, toAdd);
 				}.bind(this));
@@ -55,33 +56,35 @@ var AnnotatedImageEditHandler = function () {
 			this.attachObserver();
 		}
 	}, {
-		key: 'attachObserver',
+		key: "attachObserver",
 		value: function attachObserver() {
 			new MutationObserver(function (mutations) {
 				mutations.forEach(function (mutation) {
-					if (mutation.attributeName === 'value') {
+					if (mutation.attributeName === "value") {
 						var imageId = mutation.target.value;
-						var image = this.container.find('img');
+						var image = this.container.find("img");
 						if (image != null) {
 							this.reset();
 						}
 						if (imageId) {
-							$.get(window.location.origin + '/admin/full_image/' + imageId, function (data) {
+							$.get(window.location.origin + "/admin/full_image/" + imageId + "/", function (data) {
 								this.imageContainer.html(data);
 								this.imageContainer.annotatableImage(this.createAnnotation.bind(this));
 							}.bind(this));
 						}
 					}
 				}.bind(this));
-			}.bind(this)).observe(this.container[0].querySelector('#' + this.imageFieldId), { attributes: true });
+			}.bind(this)).observe(this.container[0].querySelector("#" + this.imageFieldId), {
+				attributes: true
+			});
 		}
 	}, {
-		key: 'createAnnotation',
+		key: "createAnnotation",
 		value: function createAnnotation() {
 			var index = this.index;
-			var annotationElement = $(document.createElement('span'));
-			annotationElement.addClass('note');
-			annotationElement.attr('data-annotation-id', index);
+			var annotationElement = $(document.createElement("span"));
+			annotationElement.addClass("note");
+			annotationElement.attr("data-annotation-id", index);
 			annotationElement.html(index);
 			this.createAnnotationForm(index, null);
 			this.addAnnotationEntry(index, annotationElement);
@@ -90,22 +93,22 @@ var AnnotatedImageEditHandler = function () {
 			return annotationElement;
 		}
 	}, {
-		key: 'reset',
+		key: "reset",
 		value: function reset() {
 			this.index = 1;
 			this.annotationData = {};
 			this.imageContainer.empty();
-			this.container.find('[data-annotation-forms]').empty();
+			this.container.find("[data-annotation-forms]").empty();
 		}
 	}, {
-		key: 'createAnnotationForm',
+		key: "createAnnotationForm",
 		value: function createAnnotationForm(index, initialData) {
-			var annotationForm = this.container.find('[data-annotation-form]').clone(false);
-			annotationForm.removeAttr('data-annotation-form');
+			var annotationForm = this.container.find("[data-annotation-form]").clone(false);
+			annotationForm.removeAttr("data-annotation-form");
 			annotationForm.find('[name="' + this.formPrefix + 'annotation_number"]').val(index);
 			annotationForm.prepend('<button href="#" class="button icon text-replace hover-no icon-bin" data-delete="' + index + '"></button>');
-			annotationForm.prepend('<h3>' + index + '</h3>');
-			annotationForm.find('button').click(this.deleteAnnotationHandler.bind(this));
+			annotationForm.prepend("<h3>" + index + "</h3>");
+			annotationForm.find("button").click(this.deleteAnnotationHandler.bind(this));
 			if (initialData && Object.keys(initialData.fields).length > 0) {
 				var fields = initialData.fields;
 				for (name in fields) {
@@ -117,11 +120,11 @@ var AnnotatedImageEditHandler = function () {
 				}
 			}
 
-			annotationForm.find('input, textarea, select').change(this.annotationFieldHandler.bind(this));
-			this.container.find('[data-annotation-forms]').append(annotationForm);
+			annotationForm.find("input, textarea, select").change(this.annotationFieldHandler.bind(this));
+			this.container.find("[data-annotation-forms]").append(annotationForm);
 		}
 	}, {
-		key: 'addAnnotationEntry',
+		key: "addAnnotationEntry",
 		value: function addAnnotationEntry(index, annotationElement) {
 			// small timeout so that position is taken AFTER the annotation is added
 			setTimeout(function () {
@@ -136,11 +139,11 @@ var AnnotatedImageEditHandler = function () {
 			}.bind(this), 10);
 		}
 	}, {
-		key: 'deleteAnnotationHandler',
+		key: "deleteAnnotationHandler",
 		value: function deleteAnnotationHandler(event) {
 			event.preventDefault();
 			var target = event.target;
-			var id = target.dataset['delete'];
+			var id = target.dataset["delete"];
 			var annotations = this.annotationData;
 			delete annotations[id];
 			target.parentNode.remove();
@@ -148,18 +151,18 @@ var AnnotatedImageEditHandler = function () {
 			this.annotationData = annotations;
 		}
 	}, {
-		key: 'annotationFieldHandler',
+		key: "annotationFieldHandler",
 		value: function annotationFieldHandler(event) {
 			var target = event.target;
 			var parent = target.parentNode.parentNode;
 			var id = parent.querySelector('[name="' + this.formPrefix + 'annotation_number"]').value;
 			var annotations = this.annotationData;
 			var fieldName = target.name.substring(this.formPrefix.length);
-			annotations[id]['fields'][fieldName] = target.value;
+			annotations[id]["fields"][fieldName] = target.value;
 			this.annotationData = annotations;
 		}
 	}, {
-		key: 'index',
+		key: "index",
 		get: function get() {
 			return this._index;
 		},
@@ -167,7 +170,7 @@ var AnnotatedImageEditHandler = function () {
 			this._index = index;
 		}
 	}, {
-		key: 'annotationData',
+		key: "annotationData",
 		get: function get() {
 			return this._annotationData;
 		},

@@ -11,6 +11,7 @@ INSTALLED_APPS = [
 
     'wagtail.core',
     'wagtail.admin',
+    'wagtail.documents',
     'wagtail.users',
     'wagtail.sites',
     'wagtail.snippets',
@@ -21,16 +22,19 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'django.contrib.messages',
 ]
 
 SECRET_KEY = 'not a secret'
 
 ROOT_URLCONF = 'tests.app.urls'
 
+ALLOWED_HOSTS = ['*']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:',
+        'NAME': '../tests.db',
     },
 }
 
@@ -41,7 +45,7 @@ DEBUG = True
 USE_TZ = True
 TIME_ZONE = 'Australia/Hobart'
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
