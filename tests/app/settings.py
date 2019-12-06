@@ -9,23 +9,27 @@ INSTALLED_APPS = [
     'taggit',
     'modelcluster',
 
-    'wagtail.wagtailcore',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtailusers',
-    'wagtail.wagtailsites',
-    'wagtail.wagtailsnippets',
-    'wagtail.wagtailimages',
+    'wagtail.core',
+    'wagtail.admin',
+    'wagtail.documents',
+    'wagtail.users',
+    'wagtail.sites',
+    'wagtail.snippets',
+    'wagtail.images',
 
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'django.contrib.messages',
 ]
 
 SECRET_KEY = 'not a secret'
 
 ROOT_URLCONF = 'tests.app.urls'
+
+ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
@@ -41,7 +45,7 @@ DEBUG = True
 USE_TZ = True
 TIME_ZONE = 'Australia/Hobart'
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -49,7 +53,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.core.middleware.SiteMiddleware',
 ]
 
 TEMPLATES = [
