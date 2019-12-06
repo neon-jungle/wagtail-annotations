@@ -43,7 +43,6 @@ var AnnotatedImageEditHandler = function () {
 				this.index = index;
 				this.imageContainer.find("img").on("load", function () {
 					this.imageContainer.addAnnotations(function (annotation) {
-						debugger;
 						var annotationElement = $(document.createElement("span"));
 						annotationElement.addClass("note");
 						annotationElement.html(annotation.id);
