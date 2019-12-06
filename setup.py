@@ -3,14 +3,14 @@
 Install wagtailvideos using setuptools
 """
 
+from setuptools import find_packages, setup
 with open('README.rst', 'r') as f:
     readme = f.read()
 
-from setuptools import find_packages, setup
 
 setup(
     name='wagtailannotatedimage',
-    version='0.0.5',
+    version='2.7.0',
     description="A wagtail module for creating an image field with annotation metadata",
     long_description=readme,
     author='Neon Jungle',

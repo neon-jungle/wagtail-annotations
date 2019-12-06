@@ -1,7 +1,7 @@
 Wagtail Annotated Image
 =======================
 
-Allows users to combine a Wagtail image with custom annotation data. Annotations are entered on the backend by
+Allows users to combine a Wagtail image with custom annotation data. Annotations are entered in the admin by
 clicking points on an image, annotation data is then stored with relative x,y coordinates with custom form data.
 
 .. image:: https://giant.gfycat.com/SpeedyHospitableHornet.gif
@@ -10,8 +10,8 @@ clicking points on an image, annotation data is then stored with relative x,y co
 Requirements
 ------------
 
--  Wagtail >= 1.5
--  Django >= 1.9
+-  Wagtail >= 2.7
+-  Django >= 2.0
 
 
 Installing
@@ -27,7 +27,7 @@ Using
 -----
 
 Extend the BaseAnnotationForm to define what data should be stored with annotations.
-AnnotationsField stores the annotations data as a Map with id for the annotation being the key.
+AnnotationsField stores the annotations data as a Dict with id for the annotation being the key.
 
 .. code:: python
 
@@ -38,7 +38,6 @@ AnnotationsField stores the annotations data as a Map with id for the annotation
     from wagtailannotatedimage.forms import BaseAnnotationForm
 
     class AnnotationForm(BaseAnnotationForm):
-        text = forms.CharField(widget=forms.TextInput)
 
 
     class TestPage(Page):
@@ -52,3 +51,15 @@ AnnotationsField stores the annotations data as a Map with id for the annotation
                 annotation_form=AnnotationForm(), heading='Annotated Image'
             )
         ]
+
+.. code:: html+Django
+    {% image page.image('width-500') %}
+
+    {% for annotation in page.annotations %}
+    <div
+     class='annotation'
+     style="left: {{ annotation.x * 100 }}%; top: {{ annotation.y * 100 }}%;"
+    >
+        {{ annotations.fields.title }}
+    </div>
+    {% endfor %}
