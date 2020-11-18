@@ -50,8 +50,8 @@ class AnnotatedImageEditHandler {
 			this.index = index;
 			this.imageContainer.find("img").on(
 				"load",
-				function() {
-					this.imageContainer.addAnnotations(function(annotation) {
+				function () {
+					this.imageContainer.addAnnotations(function (annotation) {
 						var annotationElement = $(document.createElement("span"));
 						annotationElement.addClass("note");
 						annotationElement.html(annotation.id);
@@ -67,9 +67,9 @@ class AnnotatedImageEditHandler {
 
 	attachObserver() {
 		new MutationObserver(
-			function(mutations) {
+			function (mutations) {
 				mutations.forEach(
-					function(mutation) {
+					function (mutation) {
 						if (mutation.attributeName === "value") {
 							var imageId = mutation.target.value;
 							var image = this.container.find("img");
@@ -79,7 +79,7 @@ class AnnotatedImageEditHandler {
 							if (imageId) {
 								$.get(
 									window.location.origin + "/admin/full_image/" + imageId + "/",
-									function(data) {
+									function (data) {
 										this.imageContainer.html(data);
 										this.imageContainer.annotatableImage(
 											this.createAnnotation.bind(this)
@@ -126,8 +126,8 @@ class AnnotatedImageEditHandler {
 			.val(index);
 		annotationForm.prepend(
 			'<button href="#" class="button icon text-replace hover-no icon-bin" data-delete="' +
-				index +
-				'"></button>'
+			index +
+			'"></button>'
 		);
 		annotationForm.prepend("<h3>" + index + "</h3>");
 		annotationForm
@@ -155,7 +155,7 @@ class AnnotatedImageEditHandler {
 	addAnnotationEntry(index, annotationElement) {
 		// small timeout so that position is taken AFTER the annotation is added
 		setTimeout(
-			function() {
+			function () {
 				var annotations = this.annotationData;
 				var annotationPos = annotationElement.seralizeAnnotations()[0];
 				annotations[index] = {

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls import url
-from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.templatetags.static import static
 from django.utils.html import format_html, format_html_join
 from wagtail.core import hooks
 

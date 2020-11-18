@@ -1,0 +1,13 @@
+FROM joyzoursky/python-chromedriver:3.8
+
+WORKDIR /app/
+
+ENV DJANGO_VERSIONS='22,30,31' \
+    WAGTAIL_VERSION=211
+
+RUN pip install --upgrade pip wheel tox django wagtail
+
+COPY . /app
+
+# send to sh so env variables get expanded
+CMD ["sh", "-c", "tox -e \"dj{$DJANGO_VERSIONS}-wt$WAGTAIL_VERSION\""]
