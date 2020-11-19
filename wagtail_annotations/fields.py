@@ -5,7 +5,7 @@ from django.db import models
 
 
 class AnnotationsField(models.TextField):
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, *args):
         return self.to_python(value)
 
     def to_python(self, value):

@@ -4,9 +4,9 @@ from django import forms
 from django.db import models
 from wagtail.core.models import Page
 
-from wagtailannotatedimage.edit_handlers import AnnotatedImagePanel
-from wagtailannotatedimage.fields import AnnotationsField
-from wagtailannotatedimage.forms import BaseAnnotationForm
+from wagtail_annotations.edit_handlers import AnnotatedImagePanel
+from wagtail_annotations.fields import AnnotationsField
+from wagtail_annotations.forms import BaseAnnotationForm
 
 
 class AnnotationForm(BaseAnnotationForm):

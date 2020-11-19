@@ -7,7 +7,7 @@
   },
   "scripts": {
     "test": "tox",
-    "build": "babel wagtailannotatedimage/frontend/js -d wagtailannotatedimage/static/annotated-image"
+    "build": "babel wagtail_annotations/frontend/js -d wagtail_annotations/static/annotated-image"
   },
   "author": "",
   "license": "ISC",

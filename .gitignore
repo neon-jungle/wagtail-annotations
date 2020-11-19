@@ -9,5 +9,5 @@ build/
 screenshots/
 *driver.log
 node_modules/
-wagtailannotatedimage/static/annotated-image/annotated-image-handler.js
+wagtail_annotations/static/annotated-image/annotated-image-handler.js
 .vscode/

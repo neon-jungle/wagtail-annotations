@@ -9,7 +9,7 @@ with open('README.rst', 'r') as f:
 
 
 setup(
-    name='wagtailannotatedimage',
+    name='wagtail_annotations',
     version='2.7.0',
     description="A wagtail module for creating an image field with annotation metadata",
     long_description=readme,
@@ -34,18 +34,15 @@ setup(
     include_package_data=True,
     package_data={},
 
-
-
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Framework :: Django',
         'License :: OSI Approved :: BSD License',
     ],

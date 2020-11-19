@@ -1,0 +1,39 @@
+stages:
+  - node
+  - test
+  - release
+
+
+build_node: 
+  stage: node
+  image: node:lts
+  before_script:
+    - npm install
+  script: 
+    - npm run build
+  artifacts:
+    when: on_success
+    paths:
+    - wagtail_annotations/static
+
+
+.python_test:
+  stage: test
+  before_script:
+    - pip install --upgrade pip wheel tox django wagtail
+  script:
+    - tox -e "dj{$DJANGO_VERSIONS}-wt$WAGTAIL_VERSION"
+
+wagtail_27:
+  extends: .python_test
+  variables:
+    DJANGO_VERSIONS: "20,21,22"
+    WAGTAIL_VERSION: 27
+  image: joyzoursky/python-chromedriver:3.7
+
+wagtail_211:
+  image: joyzoursky/python-chromedriver:3.8
+  extends: .python_test
+  variables:
+    DJANGO_VERSIONS: "22,30,31"
+    WAGTAIL_VERSION: 211

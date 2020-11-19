@@ -21,7 +21,7 @@ Install using pypi
 
 .. code:: bash
 
-    pip install wagtailannotatedimage
+    pip install wagtail-annotations
 
 Using
 -----
@@ -34,9 +34,9 @@ AnnotationsField stores the annotations data as json, converting to a dict on re
     from django import forms
     from django.db import models
     from wagtail.wagtailcore.models import Page
-    from wagtailannotatedimage.edit_handlers import AnnotatedImagePanel
-    from wagtailannotatedimage.fields import AnnotationsField
-    from wagtailannotatedimage.forms import BaseAnnotationForm
+    from wagtail_annotations.edit_handlers import AnnotatedImagePanel
+    from wagtail_annotations.fields import AnnotationsField
+    from wagtail_annotations.forms import BaseAnnotationForm
 
     class AnnotationForm(BaseAnnotationForm):
         title = forms.CharField()

@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import os
 
 INSTALLED_APPS = [
-    'wagtailannotatedimage',
+    'wagtail_annotations',
     'tests.app',
 
     'taggit',
@@ -52,8 +52,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'wagtail.core.middleware.SiteMiddleware',
 ]
 
 TEMPLATES = [
