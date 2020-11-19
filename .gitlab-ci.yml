@@ -14,7 +14,7 @@ build_node:
   artifacts:
     when: on_success
     paths:
-    - wagtailannotationedimage/static
+    - wagtail_annotations/static
 
 
 .python_test:
