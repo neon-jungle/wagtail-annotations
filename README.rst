@@ -1,10 +1,10 @@
-Wagtail Annotated Image
-=======================
+Wagtail Annotatations
+=====================
 
 Allows users to combine a Wagtail images with custom annotation data. Annotations are entered in the admin by
 clicking points on an image, annotation data is then stored with relative x,y coordinates and optional extra form data.
 
-.. image:: https://giant.gfycat.com/SpeedyHospitableHornet.gif
+.. image:: annotation-demo.gif
    :width: 728 px
 
 Requirements
@@ -17,7 +17,7 @@ Requirements
 Installing
 ----------
 
-Install using pypi
+Install using pypi and add ``wagtail-annotations`` to your ``INSTALLED_APPS``
 
 .. code:: bash
 
@@ -87,3 +87,26 @@ AnnotationsField stores the annotations data as json, converting to a dict on re
     .annotation {
         position: absolute;
     }
+
+Developing
+----------
+
+You can use the included test app to develop:
+
+.. code:: shell
+    
+    > npm install && npm run build
+    > pip install -e .
+    > export DJANGO_SETTINGS_MODULE=settings
+    > django-admin migrate
+    > django-admin createsuperuser
+    ...
+    > django-admin runserver
+
+There's an Dockerfile that includes chromerdriver for the tests, you can build and run it locally if you don't have chromedriver installed:
+
+.. code:: shell
+
+    > docker build -f Dockerfile.test -t annotation-test .
+    > docker run annotation-test
+    > docker run -e WAGTAIL_VERSION=27 -e DJANGO_VERSIONS='30,31' annotation-test
