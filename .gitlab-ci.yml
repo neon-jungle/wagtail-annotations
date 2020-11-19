@@ -24,16 +24,16 @@ build_node:
   script:
     - tox -e "dj{$DJANGO_VERSIONS}-wt$WAGTAIL_VERSION"
 
-wagtail_26:
+wagtail_27:
   extends: .python_test
   variables:
     DJANGO_VERSIONS: "20,21,22"
     WAGTAIL_VERSION: 27
-  image: joyzoursky/python-chromedriver:3.6
+  image: joyzoursky/python-chromedriver:3.7
 
 wagtail_211:
   image: joyzoursky/python-chromedriver:3.8
   extends: .python_test
   variables:
-    DJANGO_VERSIONS: 22,30,31
+    DJANGO_VERSIONS: "22,30,31"
     WAGTAIL_VERSION: 211
