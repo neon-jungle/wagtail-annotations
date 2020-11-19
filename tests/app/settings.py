@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import os
 
 INSTALLED_APPS = [
-    'wagtailannotatedimage',
+    'wagtail_annotations',
     'tests.app',
 
     'taggit',
@@ -35,7 +35,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': ':memory:',
-        # 'NAME': 'tests.sqlite3',
     },
 }
 
