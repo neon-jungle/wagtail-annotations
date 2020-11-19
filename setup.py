@@ -9,8 +9,8 @@ with open('README.rst', 'r') as f:
 
 
 setup(
-    name='wagtail_annotations',
-    version='2.7.0',
+    name='wagtail-annotations',
+    version='3.0.0',
     description="A wagtail module for creating an image field with annotation metadata",
     long_description=readme,
     author='Neon Jungle',

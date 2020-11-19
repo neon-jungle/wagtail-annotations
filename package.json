@@ -13,12 +13,12 @@
   "license": "ISC",
   "babel": {
     "presets": [
-      "latest"
+      "@babel/preset-env"
     ]
   },
   "devDependencies": {
-    "babel-cli": "^6.16.0",
-    "babel-preset-latest": "^6.16.0",
-    "phantomjs": "^2.1.7"
+    "@babel/core": "^7.3.3",
+    "@babel/cli": "^7.3.3",
+    "@babel/preset-env": "^7.3.3"
   }
 }
