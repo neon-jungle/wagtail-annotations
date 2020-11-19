@@ -25,8 +25,8 @@ class TestEditHandler(StaticLiveServerTestCase, WagtailTestUtils):
         options = Options()
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
-        # options.add_argument('--no-sandbox')
-        # options.add_argument('--disable-dev-shm-usage')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
         cap = DesiredCapabilities.CHROME.copy()
         cap['loggingPrefs'] = { 'browser':'ALL' }
         cap['goog:loggingPrefs'] = { 'browser':'ALL' }
